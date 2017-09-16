@@ -39,12 +39,12 @@ class ScreeningEvent extends Event
     protected $subtitleLanguages;
 
     /**
-     * @var string|null The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
+     * @var string[]|null The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).
      *
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="simple_array", nullable=true)
      * @ApiProperty(iri="http://schema.org/videoFormat")
      */
-    protected $videoFormat;
+    protected $videoFormats;
 
     /**
      * @var Movie the movie presented during this event
@@ -58,6 +58,7 @@ class ScreeningEvent extends Event
     public function __construct()
     {
         $this->subtitleLanguages = new ArrayCollection();
+        $this->videoFormats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,16 +85,23 @@ class ScreeningEvent extends Event
         return $this->subtitleLanguages;
     }
 
-    public function setVideoFormat(?string $videoFormat): self
+    public function addVideoFormat(string $videoFormat): self
     {
-        $this->videoFormat = $videoFormat;
+        $this->videoFormats[] = $videoFormat;
 
         return $this;
     }
 
-    public function getVideoFormat(): ?string
+    public function removeVideoFormat(string $videoFormat): self
     {
-        return $this->videoFormat;
+        $this->videoFormats->removeElement($videoFormat);
+
+        return $this;
+    }
+
+    public function getVideoFormats(): Collection
+    {
+        return $this->videoFormats;
     }
 
     public function setWorkPresented(Movie $workPresented): self
