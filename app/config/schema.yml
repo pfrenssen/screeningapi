@@ -1,0 +1,31 @@
+fieldVisibility: "protected"
+fluentMutatorMethods: true
+types:
+    Duration:
+        properties:
+            identifier: { range: "Text" }
+    Event:
+        parent: Thing
+        properties:
+            inLanguage: { range: "Text" }
+            location: { range: "Place" }
+            startDate: { range: "DateTime" }
+    Movie:
+        parent: Thing
+        properties:
+            duration: ~
+    Place:
+        parent: Thing
+        properties:
+            address: { range: "Text" }
+    ScreeningEvent:
+        parent: Event
+        properties:
+            subtitleLanguage:
+                range: "Text"
+                cardinality: "(0..*)"
+            videoFormat: { cardinality: "(0..*)" }
+            workPresented: { nullable: false }
+    Thing:
+        properties:
+            name: ~

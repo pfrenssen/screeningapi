@@ -1,0 +1,17 @@
+{
+    "name": "pfrenssen/screeningapi",
+    "description": "A REST API providing data about movie screenings",
+    "type": "project",
+    "require-dev": {
+        "api-platform/schema-generator": "^2.0"
+    },
+    "license": "GPL3",
+    "authors": [
+        {
+            "name": "Pieter Frenssen",
+            "email": "pieter@frenssen.be"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
